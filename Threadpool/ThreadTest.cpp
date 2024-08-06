@@ -3,13 +3,9 @@
 #include<chrono>
 
 
-/*ÓĞÊ±ºòÏëÒªÏß³ÌµÄ·µ»ØÖµ*/
 
-/*ÎÊÌâÒ» ÔõÃ´Éè¼Ærunº¯ÊıµÄ·µ»ØÖµ£¬ ¿ÉÒÔ±íÊ¾ÈÎÒâµÄÀàĞÍ
-* java Python Object ÊÇËùÓĞÆäËûÀàµÄ»ùÀà
-* C++17  AnyÀàĞÍ
 
-*/
+
 class myTask : public Task
 {public:
 	myTask(int begin, int end)
@@ -18,7 +14,7 @@ class myTask : public Task
 	{
 		
 	}
-	Any run()  //run·½·¨×îÖÕÔÚÔÚÏß³Ì·ÖÅä³Ø·ÖÅäµÄÏß³ÌÈ¥Ö´ĞĞ
+	Any run()  //runæ–¹æ³•æœ€ç»ˆåœ¨åœ¨çº¿ç¨‹åˆ†é…æ± åˆ†é…çš„çº¿ç¨‹å»æ‰§è¡Œ
 	{
 		std::cout << "tid: " << std::this_thread::get_id() 
 			<< " begin " << std::endl;
@@ -38,13 +34,12 @@ private:
 	int end;
 };
 int main()
-{ //´òÓ¡Ïß³ÌµÄÏß³ÌÕ¾ ¿´¿´Ë¼Ë÷Í£Ö¹µ½ÄÄÀï
-	//¶ÔÏóÎö¹¹ÒÔºó ¶ÔÏóÔõÃ´»ØÊÕ
+{ 
 	
 		ThreadPool pool;
 		//pool.setMode(PoolMode::MODE_CACHED);
 
-		//ËùÓĞÉèÖÃºÃÖ®ºó£¬ÔÚ¿ªÊ¼ÔËĞĞ
+		//æ‰€æœ‰è®¾ç½®å¥½ä¹‹åï¼Œåœ¨å¼€å§‹è¿è¡Œ
 		pool.start(4);
 
 		Result res = pool.submitTask(std::make_shared<myTask>(1, 2));
@@ -60,9 +55,9 @@ int main()
 		//int sum1 = res1.get().cast<int>();
 		int sum = res.get().cast<int>();
 
-		//Master-Slave Ïß³ÌÈÎÎñÄ£ĞÍ  MasterÓÃÀ´·ÖÅäÈÎÎñ£¬¸øSlaveÏß³Ì·ÖÅäÈÎÎñ
-		//MasterÈÎÎñºÏ²¢¸÷¸öÈÎÎñ
-		std::cout << "½á¹ûÎª " << sum << std::endl;
+		//Master-Slave çº¿ç¨‹ä»»åŠ¡æ¨¡å‹  Masterç”¨æ¥åˆ†é…ä»»åŠ¡ï¼Œç»™Slaveçº¿ç¨‹åˆ†é…ä»»åŠ¡
+		//Masterä»»åŠ¡åˆå¹¶å„ä¸ªä»»åŠ¡
+		std::cout << "ç»“æœä¸º " << sum << std::endl;
 		
 	
 	
